@@ -26,8 +26,6 @@ const char *password = "elatedsea489";
 
 WiFiServer server(80);
 
-
-
 bool turnMotor = false;
 SemaphoreHandle_t turnMotorMutex;
 
@@ -40,6 +38,7 @@ void Task1code(void *pvParameters)
 
   for (;;)
   {
+
     WiFiClient client = server.available(); // listen for incoming clients
 
     if (client)
@@ -69,6 +68,8 @@ void Task1code(void *pvParameters)
               client.print("Click <a href=\"/H\">here</a> to turn the LED on pin 5 on.<br>");
               client.print("Click <a href=\"/L\">here</a> to turn the LED on pin 5 off.<br>");
 
+
+
               // The HTTP response ends with another blank line:
               client.println();
               // break out of the while loop:
@@ -92,7 +93,6 @@ void Task1code(void *pvParameters)
           }
           if (currentLine.endsWith("GET /L"))
           {
-            Serial.println("Pressed L");
             turnMotor = false;
           }
         }
@@ -111,17 +111,19 @@ void Task2code(void *pvParameters)
   {
     if (turnMotor)
     {
-      if (stepper2.distanceToGo() == 0)
+      if (stepper2.distanceToGo() == 0){
         stepper2.setCurrentPosition(0);
         stepper2.moveTo(2048);
         stepper2.setSpeed(500);
         totalSteps += 2048;
-
+      }
       stepper2.run();
     }
-    else{
+    else
+    {
       stepper2.stop();
       totalSteps += stepper2.currentPosition();
+      stepper2.setCurrentPosition(0);
     }
   }
 }
