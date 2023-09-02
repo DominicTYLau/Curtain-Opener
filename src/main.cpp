@@ -21,8 +21,8 @@ AccelStepper stepper2(FULLSTEP, motorPin5, motorPin7, motorPin6, motorPin8);
 
 int totalSteps; // Determine the length of the curtain
 
-const char *ssid = "ORBI47";
-const char *password = "elatedsea489";
+const char *ssid = "test";
+const char *password = "password";
 
 WiFiServer server(80);
 
