@@ -14,8 +14,8 @@ const float GEAR_RED = 64;
 const float STEPS_PER_OUT_REV = STEPS_PER_REV * GEAR_RED;
 
 
-const char* ssid     = "ORBI47";
-const char* password = "elatedsea489";
+const char* ssid     = "test";
+const char* password = "password";
 
 WiFiServer server(80);
 
